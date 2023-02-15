@@ -1,5 +1,13 @@
-body {
+.page {
   background: #e62d2d;
+}
+.page-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+}
+.page-wrapper img {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
