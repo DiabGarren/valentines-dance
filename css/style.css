@@ -4,10 +4,26 @@
 .page-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
+  gap: 0.2rem;
   justify-content: center;
 }
 .page-wrapper img {
   width: 100%;
+  display: block;
+  border-radius: 15px;
+}
+.page__image-wrapper a.download {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  background: #9b0808;
+  color: white;
+  border-radius: 5px;
+}
+.page__image-wrapper a.download:hover {
+  background: #e64141;
+  color: black;
 }
 
 /*# sourceMappingURL=style.css.map */

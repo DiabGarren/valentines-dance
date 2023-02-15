@@ -4,10 +4,30 @@
     &-wrapper {
         display: grid;
         grid-template-columns: repeat(auto-fit, 300px);
+        gap: .2rem;
         justify-content: center;
 
         img {
             width: 100%;
+            display: block;
+            border-radius: 15px;
+        }
+    }
+
+    &__image-wrapper {
+        a.download {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            background: #9b0808;
+            color:white;
+            border-radius: 5px;
+
+            &:hover {
+                background: #e64141;
+                color: black;
+            }
         }
     }
 }
