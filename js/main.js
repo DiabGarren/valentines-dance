@@ -5,7 +5,7 @@ function loadImages(images) {
     images.forEach((image) => {
         if (image.Name != "template") {
             output += `<div class="page__image-wrapper">
-            <img src="${image.Thumbnail}" alt="${image.Name}">
+            <img src="images/placeholder.webp" data-src="${image.Thumbnail}" alt="${image.Name}">
             <a href="${image.Image}" class="download" download>Download (${image.Size}MB)</a>
         </div>`;
         }
@@ -22,3 +22,26 @@ async function getImages(path) {
 }
 
 const images = getImages("./images.json");
+
+let imagesToLoad = document.querySelectorAll("img[data-src]");
+console.log(imagesToLoad);
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((items, observer) => {
+        items.forEach((item) => {
+            if (item.isIntersecting) {
+                loadImages(item.target);
+                observer.unobserve(item.target);
+            }
+        });
+    });
+
+    imagesToLoad.forEach((img) => {
+        observer.observe(img);
+    });
+
+} else {
+    imagesToLoad.forEach((img) => {
+        loadImages(img);
+    });
+}
