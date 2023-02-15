@@ -16,7 +16,6 @@ function loadImages(images) {
 
 function initImages() {
     let imagesToLoad = document.querySelectorAll("img[data-src]");
-    console.log(imagesToLoad);
 
     const loadImages = (image) => {
         image.setAttribute("src", image.getAttribute("data-src"));
