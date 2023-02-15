@@ -13,16 +13,8 @@ function loadImages(images) {
 
     return output;
 }
-async function getImages(path) {
-    fetch(path)
-        .then((iamges) => iamges.json())
-        .then((imagesJSON) => {
-            pageWrapper.innerHTML = loadImages(imagesJSON);
-        });
-}
 
 function initImages() {
-
     let imagesToLoad = document.querySelectorAll("img[data-src]");
     console.log(imagesToLoad);
 
@@ -54,5 +46,13 @@ function initImages() {
     }
 }
 
+async function getImages(path) {
+    fetch(path)
+        .then((iamges) => iamges.json())
+        .then((imagesJSON) => {
+            pageWrapper.innerHTML = loadImages(imagesJSON);
+            initImages();
+        });
+}
+
 const images = getImages("./images.json");
-setTimeout(initImages, 100);
