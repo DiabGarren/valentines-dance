@@ -7,11 +7,21 @@ function getImageName(param) {
     const imageName = urlParams.get(param);
     return imageName;
 }
+
+/**
+ * Header/Footer
+ */
+const header = document.querySelector("header");
+header.innerHTML = `<h1>Curro Krugersdorp High School</h1>
+<h2>Valentine's Dance 2023</h2>`;
+
+const footer = document.querySelector("footer");
+footer.innerHTML = `<a href="mailto:garrendiab@gmail.com"><h1>&copy;Garren Diab - 2023</h1></a>`;
+
 /**
  * Home Page
  */
-
-let pageWrapper = document.querySelector(".page-wrapper");
+const pageWrapper = document.querySelector(".page-wrapper");
 
 if (pageWrapper) {
     function loadImages(images) {
@@ -21,25 +31,25 @@ if (pageWrapper) {
                 output += `<div class="page-wrapper__image-wrapper">
                     <a href="image/?image=${image.Name}" class="view">
                         <img src="images/placeholder.webp" data-src="${image.Thumbnail}" alt="${image.Name}">
-                        View Image
+                        <p>View Image</p>
                     </a>
                 </div>`;
             }
         });
-    
+
         return output;
     }
-    
+
     function initImages() {
         let imagesToLoad = document.querySelectorAll("img[data-src]");
-    
+
         const loadImages = (image) => {
             image.setAttribute("src", image.getAttribute("data-src"));
             image.onload = () => {
                 image.removeAttribute("data-src");
             };
         };
-    
+
         if ("IntersectionObserver" in window) {
             const observer = new IntersectionObserver((items, observer) => {
                 items.forEach((item) => {
@@ -49,18 +59,18 @@ if (pageWrapper) {
                     }
                 });
             });
-    
+
             imagesToLoad.forEach((img) => {
                 observer.observe(img);
             });
-    
+
         } else {
             imagesToLoad.forEach((img) => {
                 loadImages(img);
             });
         }
     }
-    
+
     async function getImages(path) {
         fetch(path)
             .then((iamges) => iamges.json())
@@ -70,7 +80,7 @@ if (pageWrapper) {
                 localStorage.setItem("images", JSON.stringify(imagesJSON))
             });
     }
-    
+
     getImages("./images.json");
 }
 
@@ -78,15 +88,19 @@ if (pageWrapper) {
  * Images page
  */
 
-let imagepageWrapper = document.querySelector(".page__image-wrapper");
+const imagepageWrapper = document.querySelector(".page__image-wrapper");
 
 if (imagepageWrapper) {
     const imageName = getImageName("image");
     const images = JSON.parse(localStorage.getItem("images"));
-    
+
     const image = images.find((img) => img.Name === imageName);
 
     imagepageWrapper.innerHTML = `<h3>${image.Name}</h3>
-    <img src="../${image.Large}" alt="${image.Name}">
+    <picture class="image"> 
+        <source media="(max-width:300px)" srcset="../${image.Thumbnail}">
+        <source media="(max-width:720px)" srcset="../${image.Small}">
+        <img src="../${image.Medium}" alt="${image.Name}">
+    </picture>
     <a href="../${image.Image}" download>Download High Res Image</a>`;
 }
