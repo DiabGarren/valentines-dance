@@ -1,29 +1,101 @@
-.page {
+body {
+  text-align: center;
   background: #e62d2d;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1.2rem;
+}
+
+header {
+  padding: 0.8rem;
+  background: #9b0808;
+  color: white;
+  font-family: "Great Vibes", cursive;
+  font-size: 1.3rem;
+}
+header h1 {
+  margin-bottom: 1.5rem;
+}
+
+nav ul {
+  background: #bf1818;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav ul li {
+  border-top: 2px solid #6d0d0d;
+}
+nav ul li a {
+  display: block;
+  padding: 0.8rem;
+  color: white;
+}
+nav ul li a.active {
+  background: #9b0808;
+}
+nav ul li a:hover {
+  background: #6d0d0d;
+}
+nav ul li:last-child {
+  border-bottom: 2px solid #6d0d0d;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.page {
+  padding: 2rem 0.6rem;
 }
 .page-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
-  gap: 0.2rem;
+  gap: 0.5rem 0.2rem;
   justify-content: center;
 }
-.page-wrapper img {
-  width: 100%;
-  display: block;
-  border-radius: 15px;
-}
-.page__image-wrapper a.download {
+.page-wrapper__image-wrapper a.view {
   display: block;
   width: 100%;
-  text-align: center;
-  text-decoration: none;
+  padding-bottom: 0.5rem;
   background: #9b0808;
   color: white;
-  border-radius: 5px;
+  border-radius: 15px;
 }
-.page__image-wrapper a.download:hover {
+.page-wrapper__image-wrapper a.view img {
+  border-radius: 15px 15px 10px 10px;
+}
+.page-wrapper__image-wrapper a.view:hover {
   background: #e64141;
   color: black;
+}
+.page-wrapper__image-wrapper a.view p {
+  margin-top: 0.5rem;
+}
+.page__image-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+footer {
+  background: #9b0808;
+  padding: 1.5rem 0;
+}
+footer a {
+  font-family: "Great Vibes", cursive;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
