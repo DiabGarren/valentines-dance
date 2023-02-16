@@ -91,30 +91,35 @@ if (pageWrapper) {
 const imagepageWrapper = document.querySelector(".page__image-wrapper");
 
 if (imagepageWrapper) {
+    
+    function loadImage(image) {
+        imagepageWrapper.innerHTML = `<h3>${image.Name}</h3>
+        <picture class="image"> 
+            <source media="(max-width:300px)" srcset="../images/${image.Name}-thumbnail.JPG">
+            <source media="(max-width:720px)" srcset="../images/${image.Name}-small.JPG">
+            <img src="../images/${image.Name}-medium.JPG" alt="${image.Name}">
+        </picture>
+        <a href="../${image.Image}" download>Download High Res Image (${image.Size}MB)</a>`;
+    }
+
     const imageName = getImageName("image");
     const images = JSON.parse(localStorage.getItem("images"));
     let image = "";
     
     if (!images) {
-        async function getImages(path) {
+        async function getImage(path) {
             fetch(path)
             .then((iamges) => iamges.json())
             .then((imagesJSON) => {
                 const images = JSON.parse(JSON.stringify(imagesJSON));
-                console.log(images);
                 const image = images.find((img) => img.Name === imageName);
-                return image;
+                loadImage(image);
             });
         }
-        image = getImages("../images.json");
+        getImage("../images.json");
     } else {
         image = images.find((img) => img.Name === imageName);
+        loadImage(image);
     }
-    imagepageWrapper.innerHTML = `<h3>${image.Name}</h3>
-    <picture class="image"> 
-        <source media="(max-width:300px)" srcset="../images/${image.Name}-thumbnail.JPG">
-        <source media="(max-width:720px)" srcset="../images/${image.Name}-small.JPG">
-        <img src="../images/${image.Name}-medium.JPG" alt="${image.Name}">
-    </picture>
-    <a href="../${image.Image}" download>Download High Res Image (${image.Size}MB)</a>`;
+
 }
