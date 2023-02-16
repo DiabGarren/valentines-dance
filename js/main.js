@@ -27,10 +27,10 @@ if (pageWrapper) {
     function loadImages(images) {
         let output = "";
         images.forEach((image) => {
-            if (image.Name != "template") {
+            if (image.Name != "template" && image.Name != "IMG_8575" && image.Name != "IMG_8597") {
                 output += `<div class="page-wrapper__image-wrapper">
                     <a href="image/?image=${image.Name}" class="view">
-                        <img src="images/placeholder.webp" data-src="${image.Thumbnail}" alt="${image.Name}">
+                        <img src="images/placeholder.webp" data-src="images/${image.Name}-thumbnail.JPG" alt="${image.Name}">
                         <p>View Image</p>
                     </a>
                 </div>`;
@@ -93,14 +93,28 @@ const imagepageWrapper = document.querySelector(".page__image-wrapper");
 if (imagepageWrapper) {
     const imageName = getImageName("image");
     const images = JSON.parse(localStorage.getItem("images"));
-
-    const image = images.find((img) => img.Name === imageName);
-
+    let image = "";
+    
+    if (!images) {
+        async function getImages(path) {
+            fetch(path)
+            .then((iamges) => iamges.json())
+            .then((imagesJSON) => {
+                const images = JSON.parse(JSON.stringify(imagesJSON));
+                console.log(images);
+                const image = images.find((img) => img.Name === imageName);
+                return image;
+            });
+        }
+        image = getImages("../images.json");
+    } else {
+        image = images.find((img) => img.Name === imageName);
+    }
     imagepageWrapper.innerHTML = `<h3>${image.Name}</h3>
     <picture class="image"> 
-        <source media="(max-width:300px)" srcset="../${image.Thumbnail}">
-        <source media="(max-width:720px)" srcset="../${image.Small}">
-        <img src="../${image.Medium}" alt="${image.Name}">
+        <source media="(max-width:300px)" srcset="../images/${image.Name}-thumbnail.JPG">
+        <source media="(max-width:720px)" srcset="../images/${image.Name}-small.JPG">
+        <img src="../images/${image.Name}-medium.JPG" alt="${image.Name}">
     </picture>
-    <a href="../${image.Image}" download>Download High Res Image</a>`;
+    <a href="../${image.Image}" download>Download High Res Image (${image.Size}MB)</a>`;
 }
