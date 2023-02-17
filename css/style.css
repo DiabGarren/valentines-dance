@@ -91,7 +91,8 @@ img {
   font-size: 1.5rem;
   margin: 0.4rem 0;
 }
-.page__image-wrapper img, .page__image-wrapper a {
+.page__image-wrapper img,
+.page__image-wrapper a {
   border-radius: 15px;
 }
 .page__image-wrapper a {
@@ -102,6 +103,19 @@ img {
 .page__image-wrapper a:hover {
   background: #e64141;
   color: black;
+}
+.page__contact-wrapper h1, .page__contact-wrapper h2 {
+  font-family: "Great Vibes", cursive;
+}
+.page__contact-wrapper h1 {
+  font-size: 2.3rem;
+}
+.page__contact-wrapper h2 {
+  font-size: 1.9rem;
+}
+.page__contact-wrapper h2 a {
+  display: inline;
+  text-decoration: underline;
 }
 
 footer {

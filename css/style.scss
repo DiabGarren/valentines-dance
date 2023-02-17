@@ -103,29 +103,29 @@ img {
         gap: .5rem .2rem;
         justify-content: center;
 
-        &__image-wrapper {
 
+        &__image-wrapper {
+    
             a.view {
                 width: 100%;
                 padding-bottom: .5rem;
                 background: $header-bg;
                 border-radius: 15px;
-
+    
                 img {
                     border-radius: 15px 15px 10px 10px;
                 }
-
+    
                 &:hover {
                     background: $image-active;
                     color: black;
                 }
-
+    
                 p {
                     margin-top: .5rem;
                 }
-
+    
             }
-
         }
     }
 
@@ -139,7 +139,8 @@ img {
             margin: .4rem 0;
         }
 
-        img, a {
+        img,
+        a {
             border-radius: 15px;
         }
 
@@ -152,6 +153,25 @@ img {
                 background: $image-active;
                 color: black;
             }
+        }
+    }
+
+    &__contact-wrapper {
+
+        h1,h2 {
+            font-family: 'Great Vibes', cursive;
+        }
+        h1 {
+            font-size: 2.3rem;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+        }
+
+        h2 a{
+            display: inline;
+            text-decoration: underline;
         }
     }
 }
