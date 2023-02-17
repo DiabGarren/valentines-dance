@@ -27,7 +27,7 @@ if (pageWrapper) {
     function loadImages(images) {
         let output = "";
         images.forEach((image) => {
-            if (image.Name != "template" && image.Name != "IMG_8575" && image.Name != "IMG_8597") {
+            if (image.Name != "template") {
                 output += `<div class="page-wrapper__image-wrapper">
                     <a href="image/?image=${image.Name}" class="view">
                         <img src="images/placeholder.webp" data-src="images/${image.Name}-thumbnail.JPG" alt="${image.Name}">
